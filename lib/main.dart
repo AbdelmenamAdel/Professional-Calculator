@@ -1,3 +1,4 @@
+import 'package:animated_button/animated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:math_expressions/math_expressions.dart';
 
@@ -22,9 +23,12 @@ class _MyAppState extends State<MyApp> {
       home: Scaffold(
         backgroundColor: Colors.black,
         appBar: AppBar(
-          title: const Text('Calculator'),
+          title: const Text(
+            'Calculator',
+            style: TextStyle(fontSize: 28),
+          ),
           centerTitle: true,
-          backgroundColor: Colors.orange,
+          backgroundColor: Colors.black,
         ),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -42,24 +46,31 @@ class _MyAppState extends State<MyApp> {
                     ),
                   ),
                   const SizedBox(
-                    height: 30,
+                    height: 20,
                   ),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: Text(
-                      output,
-                      style: const TextStyle(fontSize: 24, color: Colors.white),
+                  const SizedBox(height: 20),
+                  Container(
+                    height: 40,
+                    width: double.infinity,
+                    padding: const EdgeInsets.only(right: 10),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(15)),
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: Text(
+                        output == '' ? 0.toString() : output,
+                        style: const TextStyle(
+                          fontSize: 24,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
                   ),
                 ],
               )),
-              const SizedBox(height: 20),
-              Container(
-                height: 1,
-                width: double.infinity,
-                color: Colors.orange,
-              ),
-              const SizedBox(height: 50),
+              const SizedBox(height: 30),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -71,8 +82,8 @@ class _MyAppState extends State<MyApp> {
                           memory = "";
                         });
                       },
-                      buttonColor: Colors.black,
-                      textColor: Colors.white),
+                      buttonColor: Colors.orange.shade300,
+                      textColor: Colors.black),
                   button(
                       text: "←",
                       onTap: () {
@@ -82,8 +93,8 @@ class _MyAppState extends State<MyApp> {
                           });
                         }
                       },
-                      buttonColor: Colors.black,
-                      textColor: Colors.white),
+                      buttonColor: Colors.orange.shade300,
+                      textColor: Colors.black),
                   button(
                       text: "%",
                       onTap: () {
@@ -100,8 +111,8 @@ class _MyAppState extends State<MyApp> {
                           });
                         }
                       },
-                      buttonColor: Colors.black,
-                      textColor: Colors.white),
+                      buttonColor: Colors.orange.shade300,
+                      textColor: Colors.black),
                   button(
                       text: "÷",
                       onTap: () {
@@ -114,16 +125,16 @@ class _MyAppState extends State<MyApp> {
                                     output[output.length - 1] == '%'))) {
                         } else {
                           setState(() {
-                            output += "/";
+                            output += "÷";
                           });
                         }
                       },
-                      buttonColor: Colors.black,
-                      textColor: Colors.white),
+                      buttonColor: Colors.orange.shade300,
+                      textColor: Colors.black),
                 ],
               ),
               const SizedBox(
-                height: 30,
+                height: 10,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -135,8 +146,8 @@ class _MyAppState extends State<MyApp> {
                           output += "7";
                         });
                       },
-                      buttonColor: Colors.black,
-                      textColor: Colors.white),
+                      buttonColor: Colors.white,
+                      textColor: Colors.black),
                   button(
                       text: "8",
                       onTap: () {
@@ -144,8 +155,8 @@ class _MyAppState extends State<MyApp> {
                           output += "8";
                         });
                       },
-                      buttonColor: Colors.black,
-                      textColor: Colors.white),
+                      buttonColor: Colors.white,
+                      textColor: Colors.black),
                   button(
                       text: "9",
                       onTap: () {
@@ -153,30 +164,30 @@ class _MyAppState extends State<MyApp> {
                           output += "9";
                         });
                       },
-                      buttonColor: Colors.black,
-                      textColor: Colors.white),
+                      buttonColor: Colors.white,
+                      textColor: Colors.black),
                   button(
-                      text: "×",
+                      text: "x",
                       onTap: () {
                         if (output.isEmpty ||
                             (output[output.length - 1] == '+' ||
                                 output[output.length - 1] == '.' ||
                                 (output[output.length - 1] == '-' ||
-                                    output[output.length - 1] == '×' ||
+                                    output[output.length - 1] == 'x' ||
                                     output[output.length - 1] == '÷' ||
                                     output[output.length - 1] == '%'))) {
                         } else {
                           setState(() {
-                            output += "*";
+                            output += "x";
                           });
                         }
                       },
-                      buttonColor: Colors.black,
-                      textColor: Colors.white),
+                      buttonColor: Colors.orange.shade300,
+                      textColor: Colors.black),
                 ],
               ),
               const SizedBox(
-                height: 30,
+                height: 10,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -188,8 +199,8 @@ class _MyAppState extends State<MyApp> {
                           output += "4";
                         });
                       },
-                      buttonColor: Colors.black,
-                      textColor: Colors.white),
+                      buttonColor: Colors.white,
+                      textColor: Colors.black),
                   button(
                       text: "5",
                       onTap: () {
@@ -197,8 +208,8 @@ class _MyAppState extends State<MyApp> {
                           output += "5";
                         });
                       },
-                      buttonColor: Colors.black,
-                      textColor: Colors.white),
+                      buttonColor: Colors.white,
+                      textColor: Colors.black),
                   button(
                       text: "6",
                       onTap: () {
@@ -206,8 +217,8 @@ class _MyAppState extends State<MyApp> {
                           output += "6";
                         });
                       },
-                      buttonColor: Colors.black,
-                      textColor: Colors.white),
+                      buttonColor: Colors.white,
+                      textColor: Colors.black),
                   button(
                       text: "-",
                       onTap: () {
@@ -215,7 +226,7 @@ class _MyAppState extends State<MyApp> {
                             (output[output.length - 1] == '+' ||
                                 output[output.length - 1] == '.' ||
                                 (output[output.length - 1] == '-' ||
-                                    output[output.length - 1] == '×' ||
+                                    output[output.length - 1] == 'x' ||
                                     output[output.length - 1] == '÷' ||
                                     output[output.length - 1] == '%'))) {
                         } else {
@@ -224,12 +235,12 @@ class _MyAppState extends State<MyApp> {
                           });
                         }
                       },
-                      buttonColor: Colors.black,
-                      textColor: Colors.white),
+                      buttonColor: Colors.orange.shade300,
+                      textColor: Colors.black),
                 ],
               ),
               const SizedBox(
-                height: 30,
+                height: 10,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -241,8 +252,8 @@ class _MyAppState extends State<MyApp> {
                           output += "1";
                         });
                       },
-                      buttonColor: Colors.black,
-                      textColor: Colors.white),
+                      buttonColor: Colors.white,
+                      textColor: Colors.black),
                   button(
                       text: "2",
                       onTap: () {
@@ -250,8 +261,8 @@ class _MyAppState extends State<MyApp> {
                           output += "2";
                         });
                       },
-                      buttonColor: Colors.black,
-                      textColor: Colors.white),
+                      buttonColor: Colors.white,
+                      textColor: Colors.black),
                   button(
                       text: "3",
                       onTap: () {
@@ -259,8 +270,8 @@ class _MyAppState extends State<MyApp> {
                           output += "3";
                         });
                       },
-                      buttonColor: Colors.black,
-                      textColor: Colors.white),
+                      buttonColor: Colors.white,
+                      textColor: Colors.black),
                   button(
                       text: "+",
                       onTap: () {
@@ -268,7 +279,7 @@ class _MyAppState extends State<MyApp> {
                             (output[output.length - 1] == '+' ||
                                 (output[output.length - 1] == '-' ||
                                     output[output.length - 1] == '.' ||
-                                    output[output.length - 1] == '×' ||
+                                    output[output.length - 1] == 'x' ||
                                     output[output.length - 1] == '÷' ||
                                     output[output.length - 1] == '%'))) {
                         } else {
@@ -277,12 +288,12 @@ class _MyAppState extends State<MyApp> {
                           });
                         }
                       },
-                      buttonColor: Colors.black,
-                      textColor: Colors.white),
+                      buttonColor: Colors.orange.shade300,
+                      textColor: Colors.black),
                 ],
               ),
               const SizedBox(
-                height: 30,
+                height: 10,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -294,15 +305,15 @@ class _MyAppState extends State<MyApp> {
                           output += "0";
                         });
                       },
-                      buttonColor: Colors.black,
-                      textColor: Colors.white),
+                      buttonColor: Colors.white,
+                      textColor: Colors.black),
                   button(
                       text: ".",
                       onTap: () {
                         if (output.isEmpty ||
                             (output[output.length - 1] == '+' ||
                                 (output[output.length - 1] == '-' ||
-                                    output[output.length - 1] == '×' ||
+                                    output[output.length - 1] == 'x' ||
                                     output[output.length - 1] == '÷' ||
                                     output[output.length - 1] == '.' ||
                                     output[output.length - 1] == '%'))) {
@@ -312,23 +323,28 @@ class _MyAppState extends State<MyApp> {
                           });
                         }
                       },
-                      buttonColor: Colors.black,
-                      textColor: Colors.white),
+                      buttonColor: Colors.white,
+                      textColor: Colors.black),
                   button(
-                      width: 130,
+                      width: 150,
                       text: "=",
                       onTap: () {
+                        output = output.replaceAll('x', '*');
+                        output = output.replaceAll('÷', '/');
+                        Parser p = Parser();
+                        Expression exp = p.parse(output);
+                        String res = exp
+                            .evaluate(EvaluationType.REAL, ContextModel())
+                            .toString();
+                        memory = '$output=';
+                        memory = memory.replaceAll('*', 'x');
+                        memory = memory.replaceAll('/', '÷');
                         setState(() {
-                          Parser p = Parser();
-                          Expression exp = p.parse(output);
-                          memory = '$output =';
-                          output = exp
-                              .evaluate(EvaluationType.REAL, ContextModel())
-                              .toString();
+                          output = res;
                         });
                       },
-                      buttonColor: Colors.orange,
-                      textColor: Colors.white),
+                      buttonColor: Colors.orange.shade300,
+                      textColor: Colors.black),
                 ],
               ),
               const SizedBox(
@@ -342,45 +358,24 @@ class _MyAppState extends State<MyApp> {
   }
 
   Widget button({
-    double width = 50,
+    double width = 70,
     required String text,
     required Function() onTap,
     required Color buttonColor,
     required Color textColor,
   }) {
-    return ElevatedButton(
+    return AnimatedButton(
       onPressed: onTap,
-      style: ElevatedButton.styleFrom(
-          backgroundColor: buttonColor, minimumSize: Size(width, 50)),
+      color: buttonColor,
+      width: width,
       child: Text(
         text,
-        style: TextStyle(color: textColor, fontSize: 24),
+        style: TextStyle(
+          color: textColor,
+          fontSize: 17,
+          fontWeight: FontWeight.w700,
+        ),
       ),
     );
   }
 }
-//  Stack(
-//               alignment: Alignment.center,
-//               children: [
-//                 const SizedBox(
-//                   height: 250,
-//                   width: 250,
-//                   // color: Colors.white,
-//                 ),
-//                 Container(
-//                   height: 200,
-//                   width: 200,
-//                   color: Colors.orange,
-//                 ),
-//                 Container(
-//                   height: 250,
-//                   width: 50,
-//                   color: Colors.purple,
-//                 ),
-//                 Container(
-//                   height: 50,
-//                   width: 250,
-//                   color: Colors.blue,
-//                 ),
-//               ],
-//             )
