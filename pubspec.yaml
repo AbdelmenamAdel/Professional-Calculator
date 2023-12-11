@@ -1,4 +1,4 @@
-name: Calculator
+name: calculator
 description: calculator created as a task in GDSC
 publish_to: 'none'
 version: 1.0.0+1
