@@ -14,337 +14,349 @@ class _CalculatorState extends State<Calculator> {
   String memory = "";
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.black,
-      appBar: AppBar(
-        title: const Text(
-          'Calculator',
-          style: TextStyle(fontSize: 28),
-        ),
-        centerTitle: true,
+    return SafeArea(
+      child: Scaffold(
         backgroundColor: Colors.black,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            SelectionArea(
-                child: Column(
-              children: [
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    memory,
-                    style: const TextStyle(fontSize: 24, color: Colors.white),
-                  ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                const SizedBox(height: 20),
-                Container(
-                  height: 40,
-                  width: double.infinity,
-                  padding: const EdgeInsets.only(right: 10),
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(15)),
-                  child: Align(
-                    alignment: Alignment.centerRight,
+        appBar: AppBar(
+          title: const Text(
+            'Calculator',
+            style: TextStyle(
+              fontSize: 28,
+              color: Colors.white,
+            ),
+          ),
+          actions: [
+            Image.asset(
+              'assets/app_icon.jpg',
+              width: 40,
+              height: 40,
+            ),
+            const SizedBox(
+              width: 16,
+            )
+          ],
+          centerTitle: true,
+          backgroundColor: Colors.black,
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              SelectionArea(
+                  child: Column(
+                children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
                     child: Text(
-                      output == '' ? 0.toString() : output,
-                      style: const TextStyle(
-                        fontSize: 24,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
+                      memory,
+                      style: const TextStyle(fontSize: 24, color: Colors.white),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const SizedBox(height: 20),
+                  Container(
+                    height: 50,
+                    width: double.infinity,
+                    padding: const EdgeInsets.only(right: 10),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(15)),
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: Text(
+                        output == '' ? 0.toString() : output,
+                        style: const TextStyle(
+                          fontSize: 24,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
-            )),
-            const SizedBox(height: 30),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                button(
-                    text: "AC",
-                    onTap: () {
-                      setState(() {
-                        output = "";
-                        memory = "";
-                      });
-                    },
-                    buttonColor: Colors.orange.shade300,
-                    textColor: Colors.black),
-                button(
-                    text: "←",
-                    onTap: () {
-                      if (output.isNotEmpty) {
+                ],
+              )),
+              const SizedBox(height: 30),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  button(
+                      text: "AC",
+                      onTap: () {
                         setState(() {
-                          output = output.substring(0, output.length - 1);
+                          output = "";
+                          memory = "";
                         });
-                      }
-                    },
-                    buttonColor: Colors.orange.shade300,
-                    textColor: Colors.black),
-                button(
-                    text: "%",
-                    onTap: () {
-                      if (output.isEmpty ||
-                          (output[output.length - 1] == '+' ||
-                              output[output.length - 1] == '.' ||
-                              (output[output.length - 1] == '-' ||
-                                  output[output.length - 1] == '×' ||
-                                  output[output.length - 1] == '÷' ||
-                                  output[output.length - 1] == '%'))) {
-                      } else {
+                      },
+                      buttonColor: Colors.orange.shade300,
+                      textColor: Colors.black),
+                  button(
+                      text: "←",
+                      onTap: () {
+                        if (output.isNotEmpty) {
+                          setState(() {
+                            output = output.substring(0, output.length - 1);
+                          });
+                        }
+                      },
+                      buttonColor: Colors.orange.shade300,
+                      textColor: Colors.black),
+                  button(
+                      text: "%",
+                      onTap: () {
+                        if (output.isEmpty ||
+                            (output[output.length - 1] == '+' ||
+                                output[output.length - 1] == '.' ||
+                                (output[output.length - 1] == '-' ||
+                                    output[output.length - 1] == '×' ||
+                                    output[output.length - 1] == '÷' ||
+                                    output[output.length - 1] == '%'))) {
+                        } else {
+                          setState(() {
+                            output += "%";
+                          });
+                        }
+                      },
+                      buttonColor: Colors.orange.shade300,
+                      textColor: Colors.black),
+                  button(
+                      text: "÷",
+                      onTap: () {
+                        if (output.isEmpty ||
+                            (output[output.length - 1] == '+' ||
+                                output[output.length - 1] == '.' ||
+                                (output[output.length - 1] == '-' ||
+                                    output[output.length - 1] == '×' ||
+                                    output[output.length - 1] == '÷' ||
+                                    output[output.length - 1] == '%'))) {
+                        } else {
+                          setState(() {
+                            output += "÷";
+                          });
+                        }
+                      },
+                      buttonColor: Colors.orange.shade300,
+                      textColor: Colors.black),
+                ],
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  button(
+                      text: "7",
+                      onTap: () {
                         setState(() {
-                          output += "%";
+                          output += "7";
                         });
-                      }
-                    },
-                    buttonColor: Colors.orange.shade300,
-                    textColor: Colors.black),
-                button(
-                    text: "÷",
-                    onTap: () {
-                      if (output.isEmpty ||
-                          (output[output.length - 1] == '+' ||
-                              output[output.length - 1] == '.' ||
-                              (output[output.length - 1] == '-' ||
-                                  output[output.length - 1] == '×' ||
-                                  output[output.length - 1] == '÷' ||
-                                  output[output.length - 1] == '%'))) {
-                      } else {
+                      },
+                      buttonColor: Colors.white,
+                      textColor: Colors.black),
+                  button(
+                      text: "8",
+                      onTap: () {
                         setState(() {
-                          output += "÷";
+                          output += "8";
                         });
-                      }
-                    },
-                    buttonColor: Colors.orange.shade300,
-                    textColor: Colors.black),
-              ],
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                button(
-                    text: "7",
-                    onTap: () {
-                      setState(() {
-                        output += "7";
-                      });
-                    },
-                    buttonColor: Colors.white,
-                    textColor: Colors.black),
-                button(
-                    text: "8",
-                    onTap: () {
-                      setState(() {
-                        output += "8";
-                      });
-                    },
-                    buttonColor: Colors.white,
-                    textColor: Colors.black),
-                button(
-                    text: "9",
-                    onTap: () {
-                      setState(() {
-                        output += "9";
-                      });
-                    },
-                    buttonColor: Colors.white,
-                    textColor: Colors.black),
-                button(
-                    text: "x",
-                    onTap: () {
-                      if (output.isEmpty ||
-                          (output[output.length - 1] == '+' ||
-                              output[output.length - 1] == '.' ||
-                              (output[output.length - 1] == '-' ||
-                                  output[output.length - 1] == 'x' ||
-                                  output[output.length - 1] == '÷' ||
-                                  output[output.length - 1] == '%'))) {
-                      } else {
+                      },
+                      buttonColor: Colors.white,
+                      textColor: Colors.black),
+                  button(
+                      text: "9",
+                      onTap: () {
                         setState(() {
-                          output += "x";
+                          output += "9";
                         });
-                      }
-                    },
-                    buttonColor: Colors.orange.shade300,
-                    textColor: Colors.black),
-              ],
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                button(
-                    text: "4",
-                    onTap: () {
-                      setState(() {
-                        output += "4";
-                      });
-                    },
-                    buttonColor: Colors.white,
-                    textColor: Colors.black),
-                button(
-                    text: "5",
-                    onTap: () {
-                      setState(() {
-                        output += "5";
-                      });
-                    },
-                    buttonColor: Colors.white,
-                    textColor: Colors.black),
-                button(
-                    text: "6",
-                    onTap: () {
-                      setState(() {
-                        output += "6";
-                      });
-                    },
-                    buttonColor: Colors.white,
-                    textColor: Colors.black),
-                button(
-                    text: "-",
-                    onTap: () {
-                      if (output.isEmpty ||
-                          (output[output.length - 1] == '+' ||
-                              output[output.length - 1] == '.' ||
-                              (output[output.length - 1] == '-' ||
-                                  output[output.length - 1] == 'x' ||
-                                  output[output.length - 1] == '÷' ||
-                                  output[output.length - 1] == '%'))) {
-                      } else {
+                      },
+                      buttonColor: Colors.white,
+                      textColor: Colors.black),
+                  button(
+                      text: "x",
+                      onTap: () {
+                        if (output.isEmpty ||
+                            (output[output.length - 1] == '+' ||
+                                output[output.length - 1] == '.' ||
+                                (output[output.length - 1] == '-' ||
+                                    output[output.length - 1] == 'x' ||
+                                    output[output.length - 1] == '÷' ||
+                                    output[output.length - 1] == '%'))) {
+                        } else {
+                          setState(() {
+                            output += "x";
+                          });
+                        }
+                      },
+                      buttonColor: Colors.orange.shade300,
+                      textColor: Colors.black),
+                ],
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  button(
+                      text: "4",
+                      onTap: () {
                         setState(() {
-                          output += "-";
+                          output += "4";
                         });
-                      }
-                    },
-                    buttonColor: Colors.orange.shade300,
-                    textColor: Colors.black),
-              ],
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                button(
-                    text: "1",
-                    onTap: () {
-                      setState(() {
-                        output += "1";
-                      });
-                    },
-                    buttonColor: Colors.white,
-                    textColor: Colors.black),
-                button(
-                    text: "2",
-                    onTap: () {
-                      setState(() {
-                        output += "2";
-                      });
-                    },
-                    buttonColor: Colors.white,
-                    textColor: Colors.black),
-                button(
-                    text: "3",
-                    onTap: () {
-                      setState(() {
-                        output += "3";
-                      });
-                    },
-                    buttonColor: Colors.white,
-                    textColor: Colors.black),
-                button(
-                    text: "+",
-                    onTap: () {
-                      if (output.isEmpty ||
-                          (output[output.length - 1] == '+' ||
-                              (output[output.length - 1] == '-' ||
-                                  output[output.length - 1] == '.' ||
-                                  output[output.length - 1] == 'x' ||
-                                  output[output.length - 1] == '÷' ||
-                                  output[output.length - 1] == '%'))) {
-                      } else {
+                      },
+                      buttonColor: Colors.white,
+                      textColor: Colors.black),
+                  button(
+                      text: "5",
+                      onTap: () {
                         setState(() {
-                          output += "+";
+                          output += "5";
                         });
-                      }
-                    },
-                    buttonColor: Colors.orange.shade300,
-                    textColor: Colors.black),
-              ],
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                button(
-                    text: "0",
-                    onTap: () {
-                      setState(() {
-                        output += "0";
-                      });
-                    },
-                    buttonColor: Colors.white,
-                    textColor: Colors.black),
-                button(
-                    text: ".",
-                    onTap: () {
-                      if (output.isEmpty ||
-                          (output[output.length - 1] == '+' ||
-                              (output[output.length - 1] == '-' ||
-                                  output[output.length - 1] == 'x' ||
-                                  output[output.length - 1] == '÷' ||
-                                  output[output.length - 1] == '.' ||
-                                  output[output.length - 1] == '%'))) {
-                      } else {
+                      },
+                      buttonColor: Colors.white,
+                      textColor: Colors.black),
+                  button(
+                      text: "6",
+                      onTap: () {
                         setState(() {
-                          output += ".";
+                          output += "6";
                         });
-                      }
-                    },
-                    buttonColor: Colors.white,
-                    textColor: Colors.black),
-                button(
-                    width: 150,
-                    text: "=",
-                    onTap: () {
-                      output = output.replaceAll('x', '*');
-                      output = output.replaceAll('÷', '/');
-                      Parser p = Parser();
-                      Expression exp = p.parse(output);
-                      String res = exp
-                          .evaluate(EvaluationType.REAL, ContextModel())
-                          .toString();
-                      memory = '$output=';
-                      memory = memory.replaceAll('*', 'x');
-                      memory = memory.replaceAll('/', '÷');
-                      setState(() {
-                        output = res;
-                      });
-                    },
-                    buttonColor: Colors.orange.shade300,
-                    textColor: Colors.black),
-              ],
-            ),
-            const SizedBox(
-              height: 10,
-            )
-          ],
+                      },
+                      buttonColor: Colors.white,
+                      textColor: Colors.black),
+                  button(
+                      text: "-",
+                      onTap: () {
+                        if (output.isEmpty ||
+                            (output[output.length - 1] == '+' ||
+                                output[output.length - 1] == '.' ||
+                                (output[output.length - 1] == '-' ||
+                                    output[output.length - 1] == 'x' ||
+                                    output[output.length - 1] == '÷' ||
+                                    output[output.length - 1] == '%'))) {
+                        } else {
+                          setState(() {
+                            output += "-";
+                          });
+                        }
+                      },
+                      buttonColor: Colors.orange.shade300,
+                      textColor: Colors.black),
+                ],
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  button(
+                      text: "1",
+                      onTap: () {
+                        setState(() {
+                          output += "1";
+                        });
+                      },
+                      buttonColor: Colors.white,
+                      textColor: Colors.black),
+                  button(
+                      text: "2",
+                      onTap: () {
+                        setState(() {
+                          output += "2";
+                        });
+                      },
+                      buttonColor: Colors.white,
+                      textColor: Colors.black),
+                  button(
+                      text: "3",
+                      onTap: () {
+                        setState(() {
+                          output += "3";
+                        });
+                      },
+                      buttonColor: Colors.white,
+                      textColor: Colors.black),
+                  button(
+                      text: "+",
+                      onTap: () {
+                        if (output.isEmpty ||
+                            (output[output.length - 1] == '+' ||
+                                (output[output.length - 1] == '-' ||
+                                    output[output.length - 1] == '.' ||
+                                    output[output.length - 1] == 'x' ||
+                                    output[output.length - 1] == '÷' ||
+                                    output[output.length - 1] == '%'))) {
+                        } else {
+                          setState(() {
+                            output += "+";
+                          });
+                        }
+                      },
+                      buttonColor: Colors.orange.shade300,
+                      textColor: Colors.black),
+                ],
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  button(
+                      text: "0",
+                      onTap: () {
+                        setState(() {
+                          output += "0";
+                        });
+                      },
+                      buttonColor: Colors.white,
+                      textColor: Colors.black),
+                  button(
+                      text: ".",
+                      onTap: () {
+                        if (output.isEmpty ||
+                            (output[output.length - 1] == '+' ||
+                                (output[output.length - 1] == '-' ||
+                                    output[output.length - 1] == 'x' ||
+                                    output[output.length - 1] == '÷' ||
+                                    output[output.length - 1] == '.' ||
+                                    output[output.length - 1] == '%'))) {
+                        } else {
+                          setState(() {
+                            output += ".";
+                          });
+                        }
+                      },
+                      buttonColor: Colors.white,
+                      textColor: Colors.black),
+                  button(
+                      width: 155,
+                      text: "=",
+                      onTap: () {
+                        output = output.replaceAll('x', '*');
+                        output = output.replaceAll('÷', '/');
+                        Parser p = Parser();
+                        Expression exp = p.parse(output);
+                        String res = exp
+                            .evaluate(EvaluationType.REAL, ContextModel())
+                            .toString();
+                        memory = '$output=';
+                        memory = memory.replaceAll('*', 'x');
+                        memory = memory.replaceAll('/', '÷');
+                        setState(() {
+                          output = res;
+                        });
+                      },
+                      buttonColor: Colors.orange.shade300,
+                      textColor: Colors.black),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:calculator/calculator_screen.dart';
+import 'package:calculator/splash_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:restart_app/restart_app.dart';
@@ -64,7 +65,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
       ),
-      home: const Calculator(),
+      home: const SplachScreen(),
     );
   }
 }
